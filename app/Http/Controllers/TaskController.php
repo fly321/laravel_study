@@ -11,7 +11,7 @@ class TaskController extends Controller
     }
 
     public function url(){
-        return route('task.index',['id'=>10]);
+        return redirect()->route('task.index',['id'=>10]);
     }
 
 }
