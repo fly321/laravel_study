@@ -36,7 +36,7 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         # 全局
-        Route::pattern('id',"[0-9]+");
+        // Route::pattern('id',"[0-9]+");
 
         $this->configureRateLimiting();
 
