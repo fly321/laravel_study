@@ -18,4 +18,5 @@ Route::get('/', function () {
 });
 
 // Route::get('index/{id}',\App\Http\Controllers\TaskController::class.'@index')->where('id','[0-9]+');
-Route::get('index',\App\Http\Controllers\TaskController::class.'@index')->name('task.index');
+Route::get('task/index/{id}',\App\Http\Controllers\TaskController::class.'@index')->name('task.index');
+Route::get('task/url',\App\Http\Controllers\TaskController::class.'@url')->name('task.url');
