@@ -95,10 +95,14 @@ Route::get('index',function(){
 |        | DELETE    | nba/{nid}             | nba.destroy     | App\Http\Controllers\Nba@destroy                           | web                                      |
 |        | GET|HEAD  | nba/{nid}/edit        | nba.edit        | App\Http\Controllers\Nba@edit                              | web                                      |
  */
-Route::resource('blog.nba',\App\Http\Controllers\Nba::class)->shallow()
+/*Route::resource('blog.nba',\App\Http\Controllers\Nba::class)->shallow()
     ->name('index','a.b.c')
     ->parameters([
         'blog'=>'bid',
         'nba'=>'nid'
-    ]);
+    ]);*/
 
+
+
+Route::get('nba/gg',[\App\Http\Controllers\Nba::class,'gg']);
+Route::match(['post','put'],'nba/pp',[\App\Http\Controllers\Nba::class,'pp']);

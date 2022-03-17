@@ -6,6 +6,15 @@ use Illuminate\Http\Request;
 
 class Nba extends Controller
 {
+
+    public function gg(){
+        return view('nba/gg');
+    }
+
+    public function pp(){
+        return strtolower(\request()->method());
+    }
+
     /**
      * Display a listing of the resource.
      *
