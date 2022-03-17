@@ -42,7 +42,63 @@ Route::get('index',function(){
 |        | DELETE    | blog/{blog}         | blog.destroy    | App\Http\Controllers\Blog@destroy                          | web                                      |
 
  */
-Route::apiResource('blog',Blog::class);
+// Route::apiResource('blog',Blog::class);
+
+// 资源路由嵌套
+/**
+|        | GET|HEAD  | blog/{blog}/nba            | blog.nba.index   | App\Http\Controllers\Nba@index                             | web                                      |
+|        | POST      | blog/{blog}/nba            | blog.nba.store   | App\Http\Controllers\Nba@store                             | web                                      |
+|        | GET|HEAD  | blog/{blog}/nba/create     | blog.nba.create  | App\Http\Controllers\Nba@create                            | web                                      |
+|        | GET|HEAD  | blog/{blog}/nba/{nba}      | blog.nba.show    | App\Http\Controllers\Nba@show                              | web                                      |
+|        | PUT|PATCH | blog/{blog}/nba/{nba}      | blog.nba.update  | App\Http\Controllers\Nba@update                            | web                                      |
+|        | DELETE    | blog/{blog}/nba/{nba}      | blog.nba.destroy | App\Http\Controllers\Nba@destroy                           | web                                      |
+|        | GET|HEAD  | blog/{blog}/nba/{nba}/edit | blog.nba.edit    | App\Http\Controllers\Nba@edit                              | web                                      |
+|        | GET|HEAD  | index                      | localhost.index  | Closure                                                    | web                                      |
+
+ */
+// Route::resource('blog.nba',\App\Http\Controllers\Nba::class);
+
+/**
+|        | GET|HEAD  | blog/{blog}/nba        | blog.nba.index  | App\Http\Controllers\Nba@index                             | web                                      |
+|        | POST      | blog/{blog}/nba        | blog.nba.store  | App\Http\Controllers\Nba@store                             | web                                      |
+|        | GET|HEAD  | blog/{blog}/nba/create | blog.nba.create | App\Http\Controllers\Nba@create                            | web                                      |
+|        | GET|HEAD  | index                  | localhost.index | Closure                                                    | web                                      |
+|        | GET|HEAD  | nba/{nba}              | nba.show        | App\Http\Controllers\Nba@show                              | web                                      |
+|        | PUT|PATCH | nba/{nba}              | nba.update      | App\Http\Controllers\Nba@update                            | web                                      |
+|        | DELETE    | nba/{nba}              | nba.destroy     | App\Http\Controllers\Nba@destroy                           | web                                      |
+|        | GET|HEAD  | nba/{nba}/edit         | nba.edit        | App\Http\Controllers\Nba@edit                              | web                                      |
+ */
+// Route::resource('blog.nba',\App\Http\Controllers\Nba::class)->shallow();
+
+/**
+|        | GET|HEAD  | blog/{blog}/nba        | a.b.c           | App\Http\Controllers\Nba@index                             | web                                      |
+|        | POST      | blog/{blog}/nba        | blog.nba.store  | App\Http\Controllers\Nba@store                             | web                                      |
+|        | GET|HEAD  | blog/{blog}/nba/create | blog.nba.create | App\Http\Controllers\Nba@create                            | web                                      |
+|        | GET|HEAD  | index                  | localhost.index | Closure                                                    | web                                      |
+|        | GET|HEAD  | nba/{nba}              | nba.show        | App\Http\Controllers\Nba@show                              | web                                      |
+|        | PUT|PATCH | nba/{nba}              | nba.update      | App\Http\Controllers\Nba@update                            | web                                      |
+|        | DELETE    | nba/{nba}              | nba.destroy     | App\Http\Controllers\Nba@destroy                           | web                                      |
+|        | GET|HEAD  | nba/{nba}/edit         | nba.edit        | App\Http\Controllers\Nba@edit                              | web                                      |
+
+ */
+// Route::resource('blog.nba',\App\Http\Controllers\Nba::class)->shallow()->name('index','a.b.c');
 
 
+# parameters blog/{blog}/nba 是前面的blog 不是{blog}
+/**
+|        | GET|HEAD  | blog/{bid}/nba        | a.b.c           | App\Http\Controllers\Nba@index                             | web                                      |
+|        | POST      | blog/{bid}/nba        | blog.nba.store  | App\Http\Controllers\Nba@store                             | web                                      |
+|        | GET|HEAD  | blog/{bid}/nba/create | blog.nba.create | App\Http\Controllers\Nba@create                            | web                                      |
+|        | GET|HEAD  | index                 | localhost.index | Closure                                                    | web                                      |
+|        | GET|HEAD  | nba/{nid}             | nba.show        | App\Http\Controllers\Nba@show                              | web                                      |
+|        | PUT|PATCH | nba/{nid}             | nba.update      | App\Http\Controllers\Nba@update                            | web                                      |
+|        | DELETE    | nba/{nid}             | nba.destroy     | App\Http\Controllers\Nba@destroy                           | web                                      |
+|        | GET|HEAD  | nba/{nid}/edit        | nba.edit        | App\Http\Controllers\Nba@edit                              | web                                      |
+ */
+Route::resource('blog.nba',\App\Http\Controllers\Nba::class)->shallow()
+    ->name('index','a.b.c')
+    ->parameters([
+        'blog'=>'bid',
+        'nba'=>'nid'
+    ]);
 
