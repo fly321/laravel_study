@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Blog;
 use App\Http\Controllers\TaskController as TaskControllerAlias;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,17 @@ Route::get('index',function(){
     // dump(Route::current());
     // return Route::currentRouteName(); //localhost.index
 })->name('localhost.index');
+
+/**
+ *
+|        | GET|HEAD  | blog                | blog.index      | App\Http\Controllers\Blog@index                            | web                                      |
+|        | POST      | blog                | blog.store      | App\Http\Controllers\Blog@store                            | web                                      |
+|        | GET|HEAD  | blog/{blog}         | blog.show       | App\Http\Controllers\Blog@show                             | web                                      |
+|        | PUT|PATCH | blog/{blog}         | blog.update     | App\Http\Controllers\Blog@update                           | web                                      |
+|        | DELETE    | blog/{blog}         | blog.destroy    | App\Http\Controllers\Blog@destroy                          | web                                      |
+
+ */
+Route::apiResource('blog',Blog::class);
 
 
 
